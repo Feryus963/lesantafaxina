@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(./assets/background-mobile.jpg) no-repeat top center/cover;
+  height: 100%;
+}
+
+#container {
+  width: 100%;
+  max-width: 588px;
+
+  margin: 56px auto 0px;
+  padding: 0 24px;
+  overflow-y: auto;
+  position: relative;
+}
+
+#imagem-fixa {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  margin: 16px;
+  padding: 12px 20px;
+
+  max-height: 100%;
+}
+
+#imagem-fixa img {
+  max-height: 40vh;
+  max-width: 20vw;
+  width: auto;
+  height: auto;
+}
+
+/* Responsividade para telas pequenas (ex: celulares) */
+@media (max-width: 600px) {
+  #imagem-fixa {
+    font-size: 14px;
+    padding: 10px 16px;
+    margin: 8px;
+  }
+}
+
+/* Responsividade para tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  #imagem-fixa {
+    font-size: 15px;
+    padding: 10px 18px;
+    margin: 12px;
+  }
+}
+#profile {
+  text-align: center;
+  padding: 24px;
+  font-size: 22px;
+  color: gold;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: rgba(0, 0, 0, 0.5);
+  border: gold solid 1px;
+}
+
+#profile p1 {
+  font-weight: bold;
+  color: #fff;
+}
+
+#profile img {
+  width: 150px;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0px;
+  text-align: center;
+}
+
+ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid blue;
+  padding: 16px 24px;
+  background: rgba(71, 68, 231, 0.342);
+  border-radius: 8px;
+  text-decoration: none;
+  color: yellow;
+  font: 16px/24px comic-sans-ms, sans-serif;
+  transition: all 0.3s ease;
+}
+
+ul li a:hover {
+  background: rgba(71, 68, 231, 0.5);
+  color: #fff;
+  border: 1.5px solid #fff;
+}
+ul li a img {
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+#social-links {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  padding: 24px 0px;
+  font-size: 60px;
+}
+#social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  color: gold;
+  transition: background 0.3s;
+  border-radius: 50%;
+}
+#social-links a:hover {
+  background: rgba(71, 68, 231, 0.342);
+  color: #fff;
+}

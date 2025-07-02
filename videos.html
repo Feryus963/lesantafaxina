@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vídeos Curtos | LêSantaFaxina</title>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f9f9f9;
+        text-align: center;
+      }
+
+      h1 {
+        margin-bottom: 24px;
+        color: #333;
+      }
+
+      .videos-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      video {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .voltar {
+        display: block;
+        width: fit-content;
+        margin: 30px auto 0;
+        font-size: 14px;
+        color: #0077cc;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+      }
+
+      .voltar:hover {
+        background-color: #e6f2ff;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Vídeos Curtos</h1>
+
+    <div class="videos-container">
+      <video controls>
+        <source src="assets/videos/limpeza1.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeo HTML5.
+      </video>
+
+      <video controls>
+        <source src="assets/videos/organizacao1.mp4" type="video/mp4" />
+        Seu navegador não suporta vídeo HTML5.
+      </video>
+    </div>
+
+    <a href="index.html" class="voltar">← Voltar à página principal</a>
+  </body>
+</html>

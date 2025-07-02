@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificados | LêSantaFaxina</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+        overflow: auto;
+      }
+
+      .modal-conteudo {
+        display: block;
+        margin: auto;
+        max-width: 90%;
+        max-height: 80vh;
+        border-radius: 8px;
+        box-shadow: 0 0 20px #000;
+        animation: zoom 0.3s ease;
+        cursor: zoom-out;
+      }
+
+      @keyframes zoom {
+        from {
+          transform: scale(0.8);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+
+      .fechar {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10000;
+        transition: 0.3s;
+      }
+
+      .fechar:hover {
+        color: #ccc;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f8f9fa;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: gold;
+        border: 1px solid gold;
+        padding: 20px 24px;
+        border-radius: 8px;
+        background-color: rgba(255, 215, 0, 0.1);
+      }
+
+      .certificados {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        padding: 10px;
+        justify-content: center;
+        align-items: start;
+      }
+
+      .certificado {
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        padding: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        border: gold solid 1px;
+        margin: 0 30px;
+      }
+
+      .certificado:hover {
+        transform: scale(1.05);
+      }
+
+      .certificado img {
+        width: auto;
+        max-height: 400px;
+        border-radius: 6px;
+        cursor: zoom-in;
+        transition: 0.3s ease;
+      }
+
+      .certificado p {
+        font-size: 30px;
+        color: white;
+        padding: 15px 0;
+      }
+
+      .voltar {
+        display: block;
+        width: fit-content;
+        margin: 30px auto 0 auto;
+        font-size: 16px;
+        text-decoration: none;
+        color: gold;
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+        left: 50px;
+      }
+
+      .voltar:hover {
+        color: #e6f2ff;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Meus Certificados</h1>
+
+    <div class="certificados">
+      <div class="certificado">
+        <img
+          src="./assets/Galeria de fotos/Certificado/Certificado1.jpg"
+          alt="Certificado Senac personal oranizer"
+        />
+        <p>Personal Organizer</p>
+      </div>
+      <div class="certificado">
+        <img
+          src="./assets/Galeria de fotos/Certificado/Certificado2.jpg"
+          alt="Certificado mentoria Diarista Premium"
+        />
+        <p>Diarista Premium</p>
+      </div>
+    </div>
+
+    <a href="index.html" class="voltar">← Voltar à página principal</a>
+
+    <div id="modalZoom" class="modal">
+      <span class="fechar">&times;</span>
+      <img
+        class="modal-conteudo"
+        id="imagemAmpliada"
+        alt="Certificado ampliado"
+      />
+    </div>
+
+    <script>
+      const modal = document.getElementById("modalZoom")
+      const modalImg = document.getElementById("imagemAmpliada")
+      const fechar = document.querySelector(".fechar")
+      const imagens = document.querySelectorAll(".certificado img")
+
+      imagens.forEach((img) => {
+        img.addEventListener("click", () => {
+          modal.style.display = "block"
+          modalImg.src = img.src
+          modalImg.alt = img.alt
+        })
+      })
+
+      fechar.addEventListener("click", () => {
+        modal.style.display = "none"
+      })
+
+      modalImg.addEventListener("click", () => {
+        modal.style.display = "none"
+      })
+
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none"
+        }
+      })
+    </script>
+  </body>
+</html>
