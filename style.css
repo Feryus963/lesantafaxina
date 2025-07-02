@@ -5,7 +5,7 @@
 }
 
 body {
-  background: url(./assets/background-mobile.jpg) no-repeat top center/cover;
+  background: url(./assets/background-azul.jpg) no-repeat top center/cover;
   height: 100%;
 }
 html,
@@ -48,6 +48,13 @@ body {
     margin: 8px;
   }
 }
+
+@media (max-width: 600px) {
+  body {
+    background: url(./assets/background-mobile.jpg) no-repeat top center/cover;
+  }
+}
+
 @media (max-width: 600px) {
   #social-links {
     gap: 16px;
