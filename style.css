@@ -40,6 +40,12 @@ body {
   height: auto;
 }
 
+footer {
+  padding: 24px 0px;
+  text-align: center;
+  font-size: 14px;
+  color: gold;
+}
 /* Responsividade para telas pequenas (ex: celulares) */
 @media (max-width: 600px) {
   #imagem-fixa {
