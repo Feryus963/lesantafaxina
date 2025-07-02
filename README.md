@@ -7,12 +7,7 @@ Projeto de um site para divulgação do trabalho de uma diarista
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-licença">Licença</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-</p>
-
-<p align="center">
-  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
+  <a href="#memo-licença">Licença</a>&nbsp;&nbsp;&nbsp;
 </p>
 
 <br>
@@ -36,7 +31,7 @@ Este projeto é uma **galeria interativa de imagens e vídeos** para apresentar 
 
 ## :memo: Licença
 
-Esse projeto está sob a licença MIT.
+Este projeto é de uso pessoal da Lê Santa Faxina, mas você pode adaptá-lo para fins educacionais.
 
 ---
 
