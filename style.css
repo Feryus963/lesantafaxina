@@ -21,6 +21,7 @@ body {
   padding: 0 24px;
   overflow-y: auto;
   position: relative;
+  z-index: 1;
 }
 
 #imagem-fixa {
@@ -31,13 +32,15 @@ body {
   padding: 12px 20px;
 
   max-height: 100%;
+  z-index: 0;
 }
 
 #imagem-fixa img {
   max-height: 40vh;
-  max-width: 100%;
+  max-width: 20vh;
   width: auto;
   height: auto;
+  opacity: 0, 1;
 }
 
 footer {
