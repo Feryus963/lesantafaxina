@@ -415,10 +415,24 @@
       </div>
 
       <div class="item">
-        <img
-          src="./assets/Antes e depois/antesedepois1.png"
-          alt="Piscina antes e depois"
-        />
+        <div id="carrossel" class="carrossel">
+          <img
+            src="./assets/Antes e depois/antesedepois1.png"
+            alt="Piscina antes e depois"
+            class="slide active"
+          />
+
+          <img
+            src="./assets/Antes e depois/"
+            alt="Piscina antes e depois"
+            class="slide"
+          />
+
+          <button class="prev">‹</button>
+          <button class="next">›</button>
+          <div class="dots"></div>
+        </div>
+
         <p>Antes e depois de faxina</p>
       </div>
       <!-- Você pode adicionar mais .item com suas fotos -->
@@ -427,86 +441,53 @@
     <a href="index.html" class="voltar">← Voltar à página principal </a>
 
     <script>
-      const carrossel1 = document.querySelector(
-        ".carrossel:not(.carrossel-videos)"
-      )
-
-      const slides1 = carrossel1.querySelectorAll(".slide")
-      const prevBtn1 = carrossel1.querySelector(".prev")
-      const nextBtn1 = carrossel1.querySelector(".next")
-      let current1 = 0
-
-      function showSlide1(index) {
-        slides1.forEach((slide, i) => {
-          slide.classList.toggle("active", i === index)
-        })
-      }
-
-      prevBtn1.addEventListener("click", () => {
-        current1 = (current1 - 1 + slides1.length) % slides1.length
-        showSlide1(current1)
-      })
-
-      nextBtn1.addEventListener("click", () => {
-        current1 = (current1 + 1) % slides1.length
-        showSlide1(current1)
-      })
-
-      // (Opcional) autoplay:
-      //setInterval(() => {
-      //current1 = (current1 + 1) % slides1.length
-      // showSlide1(current1)
-      //}, 5000)
-    </script>
-    <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const carrossel2 = document.querySelector(".carrossel")
-        const slides2 = carrossel2.querySelectorAll(".slide")
-        const prevBtn2 = carrossel2.querySelector(".prev")
-        const nextBtn2 = carrossel2.querySelector(".next")
-        const dotsContainer2 = carrossel2.querySelector(".dots")
+        const carrosseis = document.querySelectorAll(
+          ".carrossel:not(.carrossel-videos)"
+        )
 
-        let current2 = 0
+        carrosseis.forEach((carrossel) => {
+          const slides = carrossel.querySelectorAll(".slide")
+          const prevBtn = carrossel.querySelector(".prev")
+          const nextBtn = carrossel.querySelector(".next")
+          const dotsContainer = carrossel.querySelector(".dots")
 
-        // Criar os dots dinamicamente
-        slides2.forEach((_, index) => {
-          const dot = document.createElement("span")
-          dot.classList.add("dot")
-          if (index === 0) dot.classList.add("active")
-          dot.addEventListener("click", () => {
-            current2 = index
-            showSlide2(current2)
+          let current = 0
+
+          // Criar dots
+          slides.forEach((_, index) => {
+            const dot = document.createElement("span")
+            dot.classList.add("dot")
+            if (index === 0) dot.classList.add("active")
+            dot.addEventListener("click", () => {
+              current = index
+              showSlide(current)
+            })
+            dotsContainer.appendChild(dot)
           })
-          dotsContainer2.appendChild(dot)
-        })
 
-        const dots2 = dotsContainer2.querySelectorAll(".dot")
+          const dots = dotsContainer.querySelectorAll(".dot")
 
-        function showSlide2(index) {
-          slides2.forEach((slide, i) => {
-            slide.classList.toggle("active", i === index)
-            dots2[i].classList.toggle("active", i === index)
+          function showSlide(index) {
+            slides.forEach((slide, i) => {
+              slide.classList.toggle("active", i === index)
+              dots[i].classList.toggle("active", i === index)
+            })
+          }
+
+          prevBtn.addEventListener("click", () => {
+            current = (current - 1 + slides.length) % slides.length
+            showSlide(current)
           })
-        }
 
-        prevBtn2.addEventListener("click", () => {
-          current2 = (current2 - 1 + slides2.length) % slides2.length
-          showSlide2(current2)
+          nextBtn.addEventListener("click", () => {
+            current = (current + 1) % slides.length
+            showSlide(current)
+          })
+
+          showSlide(0)
         })
-
-        nextBtn2.addEventListener("click", () => {
-          current2 = (current2 + 1) % slides2.length
-          showSlide2(current2)
-        })
-
-        // Carrossel automático (opcional)
-        //setInterval(() => {
-        // current2 = (current2 + 1) % slides2.length
-        // showSlide2(current2)
-        //}, 5000)
       })
-
-      /*Modal Zoom para imagens*/
     </script>
 
     <div id="modalZoom" class="modal">
@@ -622,7 +603,7 @@
       })
 
       // Fechar modal clicando fora da imagem/video
-      window.addEventLiprevBtnModal.addstener("click", (e) => {
+      window.addEventListener("click", (e) => {
         if (e.target === modal) {
           modal.style.display = "none"
           if (!modalVideo.paused) {
