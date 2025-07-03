@@ -109,10 +109,9 @@
       }
 
       .certificado img {
-        max-width: 100%;
-        width: auto;
-        height: auto;
-        max-height: 400px;
+        width: 100%;
+        aspect-ratio: 4 / 3; /* ou 3 / 2, depende da proporção dos certificados */
+        object-fit: cover;
         border-radius: 6px;
         cursor: zoom-in;
         transition: 0.3s ease;
