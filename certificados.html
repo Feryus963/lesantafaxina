@@ -22,7 +22,9 @@
       .modal-conteudo {
         display: block;
         margin: auto;
-        max-width: 90%;
+        width: auto;
+        max-width: 90vh;
+        height: auto;
         max-height: 80vh;
         border-radius: 8px;
         box-shadow: 0 0 20px #000;
@@ -72,6 +74,17 @@
         background-color: rgba(255, 215, 0, 0.1);
       }
 
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 22px;
+          padding: 12px;
+        }
+
+        .certificado p {
+          font-size: 18px;
+        }
+      }
+
       .certificados {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -88,7 +101,7 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
         border: gold solid 1px;
-        margin: 0 30px;
+        margin: 0;
       }
 
       .certificado:hover {
@@ -96,7 +109,9 @@
       }
 
       .certificado img {
+        max-width: 100%;
         width: auto;
+        height: auto;
         max-height: 400px;
         border-radius: 6px;
         cursor: zoom-in;
