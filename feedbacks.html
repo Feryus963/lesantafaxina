@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feedbacks | LêSantaFaxina</title>
+    <style>
+      body {
+        background-image: url(./assets/background-azul.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-color: #2f5ef7de; /* Ou outra cor parecida com o fundo da
+      imagem */
+        background-attachment: fixed;
+        font-family: "Inter", sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: gold;
+        border: 1px solid gold;
+        padding: 20px 24px;
+        border-radius: 8px;
+        background-color: rgba(255, 215, 0, 0.1);
+      }
+
+      .feedbacks {
+        text-align: center;
+      }
+
+      .item {
+        display: flex ;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+        padding: 12px 40px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        border: gold solid 1px;
+        margin: 0 auto;
+        width: fit-content;
+      }
+
+      .item img {
+        max-height: 625px; /* Reduz a altura da imagem */
+        width: auto;
+        display: block;
+        margin: 0 auto 8px auto;
+        border-radius: 6px;
+        cursor: zoom-in;
+        transition: 0.3s ease;
+      }
+
+      .item img:hover {
+        transform: scale(1.05);
+        border-radius: 8px;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      .modal-conteudo {
+        display: block;
+        margin: auto;
+        max-width: 90%;
+        max-height: 80vh;
+        border-radius: 8px;
+        box-shadow: 0 0 20px #000;
+        animation: zoom 0.3s ease;
+        cursor: zoom-out;
+      }
+
+      @keyframes zoom {
+        from {
+          transform: scale(0.8);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+
+      .fechar {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        z-index: 10000;
+      }
+
+      .fechar:hover {
+        color: #ccc;
+      }
+
+      .nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: white;
+        font-size: 40px;
+        padding: 12px;
+        cursor: pointer;
+        user-select: none;
+        z-index: 10001;
+        transition: 0.3s;
+      }
+
+      .nav:hover {
+        color: #ccc;
+      }
+
+      .prev {
+        left: 20px;
+      }
+
+      .next {
+        right: 20px;
+      }
+
+      /*dots fotos*/
+      .dots {
+        text-align: center;
+        margin-top: 12px;
+      }
+
+      .dots .dot {
+        display: inline-block;
+        height: 10px;
+        width: 10px;
+        margin: 0 4px;
+        background-color: #ccc;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .dots .dot.active {
+        background-color: #0077cc;
+      }
+
+      /* Carrossel */
+      .carrossel {
+        max-width: 500px;
+        margin: auto;
+        position: relative;
+        overflow: hidden;
+        border-radius: 6px;
+      }
+
+      .carrossel img.slide {
+        display: none;
+        width: 100%;
+        transition: opacity 0.4s ease-in-out;
+        border-radius: 6px;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .carrossel img.slide.active {
+        display: block;
+        position: relative;
+      }
+
+      .carrossel button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: white;
+        font-size: 18px;
+        padding: 6px 10px;
+        cursor: pointer;
+        z-index: 10;
+        border-radius: 4px;
+      }
+
+      .carrossel .prev {
+        left: 10px;
+      }
+
+      .carrossel .next {
+        right: 10px;
+      }
+
+      .voltar {
+        display: block;
+        width: fit-content;
+        margin: 30px auto 0 auto;
+        font-size: 16px;
+        text-decoration: none;
+        color: gold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        padding: 8px 12px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+        left: 50px;
+      }
+
+      .voltar:hover {
+        text-decoration: underline;
+        color: white;
+      }
+
+      .modal-conteudo {
+        display: block;
+        margin: auto;
+        max-width: 90%;
+        max-height: 80vh;
+        border-radius: 8px;
+        box-shadow: 0 0 20px #000;
+        animation: zoom 0.3s ease;
+        cursor: zoom-out;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Feedbacks de clientes</h1>
+    <div class="Feedbacks">
+      <div class="item">
+        <div class="carrossel"> 
+        <img
+          src="./assets/Feedbacks/feedback1.png"
+          class="slide active"
+          alt="Feedback 1"
+        />
+        <img
+          src="./assets/Feedbacks/feedback2.jpg"
+          class="slide"
+          alt="Feedback 2"
+        />
+        <img
+          src="./assets/Feedbacks/feedback3.jpg"
+          class="slide"
+          alt="Feedback 3"
+        />
+        <img
+          src="./assets/Feedbacks/feedback4.png"
+          class="slide"
+          alt="Feedback 4"
+        />
+        <button class="prev">‹</button>
+        <button class="next">›</button>
+        <div class="dots"></div>
+      </div>
+    </div>
+
+    <a href="index.html" class="voltar">← Voltar à página principal </a>
+
+    <script>
+      const carrossel1 = document.querySelector(
+        ".carrossel:not(.carrossel-videos)"
+      )
+
+      const slides1 = carrossel1.querySelectorAll(".slide")
+      const prevBtn1 = carrossel1.querySelector(".prev")
+      const nextBtn1 = carrossel1.querySelector(".next")
+      let current1 = 0
+
+      function showSlide1(index) {
+        slides1.forEach((slide, i) => {
+          slide.classList.toggle("active", i === index)
+        })
+      }
+
+      prevBtn1.addEventListener("click", () => {
+        current1 = (current1 - 1 + slides1.length) % slides1.length
+        showSlide1(current1)
+      })
+
+      nextBtn1.addEventListener("click", () => {
+        current1 = (current1 + 1) % slides1.length
+        showSlide1(current1)
+      })
+
+      // (Opcional) autoplay:
+      //setInterval(() => {
+      //current1 = (current1 + 1) % slides1.length
+      // showSlide1(current1)
+      //}, 5000)
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const carrossel2 = document.querySelector(".carrossel")
+        const slides2 = carrossel2.querySelectorAll(".slide")
+        const prevBtn2 = carrossel2.querySelector(".prev")
+        const nextBtn2 = carrossel2.querySelector(".next")
+        const dotsContainer2 = carrossel2.querySelector(".dots")
+
+        let current2 = 0
+
+        // Criar os dots dinamicamente
+        slides2.forEach((_, index) => {
+          const dot = document.createElement("span")
+          dot.classList.add("dot")
+          if (index === 0) dot.classList.add("active")
+          dot.addEventListener("click", () => {
+            current2 = index
+            showSlide2(current2)
+          })
+          dotsContainer2.appendChild(dot)
+        })
+
+        const dots2 = dotsContainer2.querySelectorAll(".dot")
+
+        function showSlide2(index) {
+          slides2.forEach((slide, i) => {
+            slide.classList.toggle("active", i === index)
+            dots2[i].classList.toggle("active", i === index)
+          })
+        }
+
+        prevBtn2.addEventListener("click", () => {
+          current2 = (current2 - 1 + slides2.length) % slides2.length
+          showSlide2(current2)
+        })
+
+        nextBtn2.addEventListener("click", () => {
+          current2 = (current2 + 1) % slides2.length
+          showSlide2(current2)
+        })
+
+        // Carrossel automático (opcional)
+        //setInterval(() => {
+        // current2 = (current2 + 1) % slides2.length
+        // showSlide2(current2)
+        //}, 5000)
+      })
+
+      /*Modal Zoom para imagens*/
+    </script>
+
+    <div id="modalZoom" class="modal">
+      <span class="fechar">&times;</span>
+      <span class="nav prev">&#10094;</span>
+      <span class="nav next">&#10095;</span>
+      <img
+        id="imagemAmpliada"
+        class="modal-conteudo"
+        alt="Imagem ampliada"
+        style="display: none"
+      />
+    </div>
+
+    <script>
+      // Modal Zoom para imagens e vídeos - declaração única de variáveis
+      const modal = document.getElementById("modalZoom")
+      const modalImg = document.getElementById("imagemAmpliada")
+      const modalVideo = document.getElementById("videoAmpliado")
+      const fechar = document.querySelector(".fechar")
+      const prevBtnModal = document.querySelector("#modalZoom .nav.prev")
+      const nextBtnModal = document.querySelector("#modalZoom .nav.next")
+      document.querySelectorAll(".item").forEach((item) => {
+        const imagens = Array.from(
+          item.querySelectorAll(".carrossel img.slide, img:not(.slide)")
+        )
+
+        imagens.forEach((img, i) => {
+          img.addEventListener("click", () => {
+            abrirModal(i, imagens, "imagem")
+          })
+        })
+
+        const videos = Array.from(item.querySelectorAll("video.slide"))
+        videos.forEach((video, i) => {
+          video.addEventListener("click", () => {
+            abrirModal(i, videos, "video")
+          })
+        })
+      })
+
+      const videosZoom = document.querySelectorAll(".carrossel-videos video")
+      let currentIndex = 0
+
+      let midiasAtuais = []
+      let tipoConteudoModal = "imagem"
+      // Abrir modal para imagens
+      function abrirModal(index, midias, tipo) {
+        midiasAtuais = midias
+        tipoConteudoModal = tipo
+        currentIndex = index
+        modal.style.display = "block"
+
+        if (tipoConteudoModal === "imagem") {
+          modalImg.src = midiasAtuais[currentIndex].src
+          modalImg.alt = midiasAtuais[currentIndex].alt
+          modalImg.style.display = "block"
+          modalVideo.style.display = "none"
+          prevBtnModal.style.display = "block"
+          nextBtnModal.style.display = "block"
+          if (!modalVideo.paused) {
+            modalVideo.pause()
+            modalVideo.currentTime = 0
+          }
+        } else {
+          modalVideo.src = midiasAtuais[currentIndex].src
+          modalVideo.style.display = "block"
+          modalImg.style.display = "none"
+          modalVideo.play()
+          prevBtnModal.style.display = "block"
+          nextBtnModal.style.display = "block"
+        }
+      }
+      // Abrir modal para vídeos
+      videosZoom.forEach((video, i) => {
+        video.addEventListener("click", () => {
+          abrirModal(i, Array.from(videosZoom), "video")
+        })
+      })
+
+      // Fechar modal
+      fechar.addEventListener("click", () => {
+        modal.style.display = "none"
+        if (!modalVideo.paused) {
+          modalVideo.pause()
+          modalVideo.currentTime = 0
+        }
+      })
+
+      // Navegação de imagens no modal
+      prevBtnModal.addEventListener("click", () => {
+        currentIndex =
+          (currentIndex - 1 + midiasAtuais.length) % midiasAtuais.length
+        abrirModal(currentIndex, midiasAtuais, tipoConteudoModal)
+      })
+
+      nextBtnModal.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % midiasAtuais.length
+        abrirModal(currentIndex, midiasAtuais, tipoConteudoModal)
+      })
+
+      // Fechar modal clicando fora da imagem/video
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.style.display = "none"
+          if (!modalVideo.paused) {
+            modalVideo.pause()
+            modalVideo.currentTime = 0
+          }
+        }
+      })
+
+      // Fechar modal clicando na imagem ou vídeo ampliado
+      modalImg.addEventListener("click", () => {
+        modal.style.display = "none"
+      })
+
+      modalVideo.addEventListener("click", () => {
+        modal.style.display = "none"
+        if (!modalVideo.paused) {
+          modalVideo.pause()
+          modalVideo.currentTime = 0
+        }
+      })
+    </script>
+  </body>
+</html>
