@@ -29,6 +29,9 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 Este projeto é uma **galeria interativa de imagens e vídeos** para apresentar os serviços da empresa **Lê Santa Faxina**, com recursos como carrossel, zoom em fotos e vídeos, e design responsivo.
 
+🔗 [Clique aqui para acessar o projeto](https://feryus963.github.io/lesantafaxina/)
+
+
 ## :memo: Licença
 
 Este projeto é de uso pessoal da Lê Santa Faxina, mas você pode adaptá-lo para fins educacionais.
